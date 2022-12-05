@@ -49,15 +49,15 @@ for (let i = 10; i < allLines.length; i++) {
   //use array destructring along with a regex that matches any digits (including
   //consecutive digits to handle multi digit numbers) to extract the important
   //parts of the command
-  const [numToMove, fromColNum, toColNum] = lineContents.match(/\d+/g);
-  for (let moveNum = 0; moveNum < parseInt(numToMove); moveNum++) {
-    //pop takes the last item from the array, updates the fromCol array, and
-    //stores the letter it removed in moving num
-    const movingLetter = arrays[fromColNum].pop();
-    //then we take the letter that we removed and add it to the end of the
-    //toColNum array
-    arrays[toColNum].push(movingLetter);
-  }
+  let [numToMove, fromColNum, toColNum] = lineContents.match(/\d+/g);
+  numToMove = parseInt(numToMove);
+
+  //splice removes items from the fromCol array and by multiplying by
+  //negative one, tells it to remove items from the end instead of
+  //the beginning
+  const removed = arrays[fromColNum].splice(numToMove * -1, numToMove);
+  //merge the removed items into the toCol array using spread operators
+  arrays[toColNum] = [...arrays[toColNum], ...removed];
 }
 
 //all col moves are done, but we still need to know what's the top item in each
