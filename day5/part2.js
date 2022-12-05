@@ -20,7 +20,7 @@ let arrays = {
   9: [],
 };
 
-//start at the bottom of the stack right above the row numbers and go
+//start at the bottom of the stack right above the col numbers and go
 //all the way to the top of the input file
 for (let rowI = 7; rowI >= 0; rowI--) {
   let colNum = 1; //keep track of what col number we are on as
