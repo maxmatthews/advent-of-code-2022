@@ -13,7 +13,7 @@ for (let i = 0; i < fileContents.length; i++) {
   //deduplicate the array using a set and spread operator
   const dedupe = [...new Set(letters)];
 
-  //if the length is 4, the oroginal 4 letters input the array must be unique
+  //if the length is 4, the current set of 4 letters input the array must be unique
   if (dedupe.length === 4) {
     console.log(i + 4); //add 4 to the current loop to account for the letters coming after this one
     break; //stop running the loop, we found the signal marker index
