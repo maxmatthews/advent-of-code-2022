@@ -1,4 +1,4 @@
-//add a timer to see how fast this is compared to my refactored solution
+//add a timer to see how fast this is compared to my original solution
 console.time("efficency checker");
 
 const fs = require("fs");
@@ -13,18 +13,17 @@ for (let i = 0; i < fileContents.length; i++) {
 
   //push the current letter and 13 more into the array
   for (let lookAhead = i; lookAhead < i + lookAheadLength; lookAhead++) {
-    letters.push(fileContents[lookAhead]);
+    if (letters.includes(fileContents[lookAhead])) {
+      continue;
+    } else {
+      letters.push(fileContents[lookAhead]);
+    }
   }
-  //deduplicate the array using a set and spread operator
-  const dedupe = [...new Set(letters)];
-
-  //if the length is 14, the current set of 14 letters input the array must be unique
-  if (dedupe.length === lookAheadLength) {
-    //add ${lookAheadLength} to the current loop to account for the letters coming after this one
+  if (letters.length === lookAheadLength) {
     console.log(i + lookAheadLength);
-    break; //stop running the loop, we found the signal marker index
+    break;
   }
 }
 
-//efficency comparison drumroll! 🥁
+//this is a millisecond faster than my initial solution
 console.timeEnd("efficency checker");
