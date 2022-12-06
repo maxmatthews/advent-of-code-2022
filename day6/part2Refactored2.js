@@ -9,7 +9,7 @@ let lookAheadLength = 14; //make this a variable so we can adjust it if needed
 //loop through each letter
 for (let i = 0; i < fileContents.length; i++) {
   //messy, but wanted to push myself for a one line solution:
-  //slice out the start letter and 14 more, de-duplicate the letters, and
+  //slice out the start letter and 13 more, de-duplicate the letters, and
   //if there are still ${lookAheadLength=14} letters left, they must
   //all be unique so log out the current index + the next ${lookAheadLength}
   //letters to output the number of letters we processed
