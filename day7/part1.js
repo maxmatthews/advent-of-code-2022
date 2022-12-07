@@ -1,3 +1,10 @@
+/*
+I'm not proud of this code. This kicked my ass for so long, I don't
+have time to refactor and add in comments. 
+https://giphy.com/gifs/embarrassed-sad-mrw-K1QnLV1caRpuw
+Maybe one day I can refactor this, but we all know how "one day"
+refactors go.
+*/
 const fs = require("fs");
 const get = require("lodash.get");
 const set = require("lodash.set");
