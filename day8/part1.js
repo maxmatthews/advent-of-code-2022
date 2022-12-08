@@ -4,8 +4,9 @@ const allLines = fileContents.split(/\r?\n/);
 
 let treeGrid = [];
 let totalTreeCount = 0; //sanity check to see how many total trees there are vs visible
-//loop over the input and store it in a multidemonsial array with each
-//height as a parsed number
+
+//loop over the input and store the parsed numbers in a multi-dimensional array
+//to make it use a coordinate system
 for (let row of allLines) {
   let col = [];
   for (let i = 0; i < row.length; i++) {
@@ -26,19 +27,30 @@ for (let rowNum = 1; rowNum < treeGrid.length - 1; rowNum++) {
   const row = treeGrid[rowNum];
 
   //loop over all the cols except the first and last ones
-  nextTree: for (let colNum = 1; colNum < row.length - 1; colNum++) {
+  for (let colNum = 1; colNum < row.length - 1; colNum++) {
     const currentTree = row[colNum];
 
     //top
+    //assume the tree is visible form the edge
     let visibleFromTop = true;
+    //start at one tree above, go through each the trees
     for (let i = rowNum - 1; i >= 0; i--) {
+      //check the tree i number above
       if (treeGrid[i][colNum] >= currentTree) {
+        //the tree is the same height or bigger, blocking visibility
+        //from this edge
         visibleFromTop = false;
+        //break out of the top loop, we already found one blocking the
+        //visibility
         break;
       }
     }
+    //if we didn't break out of the loop, it must still be visible
     if (visibleFromTop) {
+      //add to the visibility counter
       visibleTreeCount++;
+      //skip checking visibility in the other directions, and just move
+      //on to the next tree
       continue;
     }
 
@@ -78,7 +90,6 @@ for (let rowNum = 1; rowNum < treeGrid.length - 1; rowNum++) {
     }
     if (visibleFromRight) {
       visibleTreeCount++;
-      continue;
     }
   }
 }
